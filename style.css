@@ -1,206 +1,271 @@
-/* Återställer standardmarginaler/padding och använder border-box för att inkludera padding i elementets storlek */
+:root {
+  --bg: #f5f7fb;
+  --surface: #ffffff;
+  --text: #1b2430;
+  --muted: #516173;
+  --brand: #0f4c81;
+  --brand-strong: #0b3b64;
+  --border: #dbe3ee;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif; /* Tungläst typsnitt */
 }
 
-/* Ställer in bakgrundsfärg, textfärg och textstil för hela sidan */
 body {
-  background: #6c6c6c;
-  color: #f5f5dc;
-  font-size: 30px;
-  text-align: left;
-  letter-spacing: 5px;
-  word-spacing: 15px;
-  line-height: 1.2em;
-  text-shadow: 5px 5px 10px black;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
 }
 
-/* Tar bort understrykning på länkar och ändrar färg */
 a {
-  color: #f5f5dc;
-  text-decoration: none;
+  color: var(--brand-strong);
 }
 
-/* Stilar för en knapp-liknande div, men "not-allowed" cursor gör att den ser inaktiv ut */
-.button {
-  background-color: magenta;
-  color: cyan;
-  font-size: 50px;
-  padding: 20px;
-  border: 5px dashed black;
-  cursor: not-allowed;
-  text-transform: uppercase;
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -4rem;
+  z-index: 999;
+  background: #fff;
+  color: var(--text);
+  border: 2px solid var(--focus);
+  border-radius: 0.5rem;
+  padding: 0.65rem 0.85rem;
 }
 
-/* Nästan osynlig text, spegelvänd */
-.hidden-text {
-  display: block;
-  opacity: 0.1;
-  font-size: 50px;
-  transform: rotate(180deg);
+.skip-link:focus {
+  top: 0.75rem;
 }
 
-/* En behållare med mittjusterad text och en blå transparent bakgrund */
-.container {
-  width: 100%;
-  margin: auto;
-  border: 10px solid pink;
-  background-color: rgba(0, 0, 255, 0.2);
-  text-align: center;
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
 }
 
-/* Artikel med prickad orange linje och en radial gradient som bakgrund */
-.article {
-  border-bottom: 10px dotted orange;
-  margin-bottom: 50px;
-  padding-bottom: 50px;
-  background: radial-gradient(circle, black, transparent);
-}
-
-/* Rubrik med stor text och mörkröd färg, justerad till höger */
-.headline {
-  font-size: 80px;
-  font-weight: lighter;
-  color: #8d0801;
-  text-align: right;
-  margin: 50px;
-  padding: 20px;
-}
-
-/* Navigeringsmeny med mörk bakgrund och jämnt fördelade element */
 .navigation {
-  background-color: #3b3b3b;
-  padding: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.9rem 1rem;
   display: flex;
-  justify-content: space-between;
-  font-size: 40px;
-  font-weight: bold;
-}
-
-/* Navigeringslänkar */
-.navigation .nav-item a {
-  color: #ffffff;
-  padding: 10px;
-  text-decoration: none;
-}
-
-/* Bakgrundsfärg vid hover på navigationslänkar */
-.navigation .nav-item:hover a {
-  background-color: #acacac40;
-}
-
-/* Bilderna placeras i en rad, centrerar dem horisontellt och vertikalt och lägger till ett mellanrum mellan bilderna */
-.image-container {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
-/* Definierar storleken på bilderna och gör att de täcker det angivna utrymmet utan att bli förvrängda  */
-.image-container img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-}
-
-/* Input-fält i en container med kolumnlayout och flytande positionering */
-.input-container {
+.nav-left {
   display: flex;
-  flex-direction: column;
-  float: right;
-  width: 50%;
-  background: #ffffff00; /* Genomskinlig bakgrund */
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
 }
 
-/* Inputfält med röd text och svart ram */
-.input-container input {
-  font-size: 30px;
-  padding: 20px;
-  text-align: right;
-  border: 5px solid black;
-  background-color: rgb(255, 255, 255);
-  color: red;
+.brand {
+  font-family: "Palatino Linotype", "Book Antiqua", serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--brand-strong);
+  text-decoration: none;
+  letter-spacing: 0.02em;
 }
 
-/* Knapp med rosa kant, mörkröd bakgrund och roterad */
-.input-container button {
-  border: 10px ridge pink;
-  background-color: darkred;
-  color: white;
-  font-size: 40px;
-  padding: 30px;
-  cursor: crosshair;
-  transform: rotate(-10deg);
+.search-form {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-left: auto;
 }
 
-/* En knapp med blå bakgrund och vit text */
-.button {
-  display: inline-block;
-  padding: 10px;
-  background-color: blue;
-  color: white;
+.search-form input {
+  min-width: 220px;
+  border: 1px solid #b6c4d5;
+  border-radius: 999px;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.95rem;
+}
+
+.search-form button {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.56rem 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--brand);
   cursor: pointer;
 }
 
-/* En "fake ad" med blinkande bakgrund och fast position längst ner */
-#fake-ad {
-  position: fixed;
-  bottom: 0;
-  width: 40%;
-  background: repeating-radial-gradient(circle, cyan, magenta 10%, yellow 20%);
+.search-form button:hover {
+  background: var(--brand-strong);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nav-item a {
+  display: inline-block;
+  padding: 0.45rem 0.7rem;
+  border-radius: 0.45rem;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.nav-item a:hover {
+  background: #e7eff9;
+}
+
+.content-area {
+  max-width: 980px;
+  margin: 2rem auto;
+  padding: 0 1rem 2rem;
+}
+
+.site-logo {
+  max-width: 980px;
+  margin: 0 auto 2rem;
+  padding: 0 1rem;
   text-align: center;
-  padding: 20px;
-  font-size: 24px;
-  font-weight: bold;
-  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
 }
 
-/* Sektion med centrerad layout */
-.top-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Text med en hover-effekt som drastiskt krymper storleken */
-.btext {
-  font-size: 18px;
-  padding: 10px 15px;
-  margin-top: 10px;
-  font-weight: bold;
-  transition: transform 0.5s ease-in-out, font-size 0.5s ease-in-out,
-    padding 0.5s ease-in-out;
-}
-
-/* På hover minskas texten kraftigt, nästan osynlig */
-.btext:hover {
-  transform: scale(0.1);
-  font-size: 1px;
-  padding: 1px;
-}
-
-/* Bild som roterar mellan -45 och 45 grader */
-.rotating-image {
-  width: 100%;
-  height: 100%;
+.site-logo img {
+  width: min(220px, 40vw);
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  animation: rotateLeftRight 2s infinite alternate ease-in-out;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  box-shadow: 0 8px 24px rgba(11, 59, 100, 0.25);
 }
 
-/* Nyckelbildning för att rotera bilden åt vänster och höger */
-@keyframes rotateLeftRight {
-  0% {
-    transform: rotate(-45deg);
-  }
-  100% {
-    transform: rotate(45deg);
-  }
+h1 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
 }
+
+.article {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.9rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.headline {
+  font-size: 1.3rem;
+  margin-bottom: 0.55rem;
+}
+
+.article p {
+  color: #28384a;
+  margin-bottom: 0.7rem;
+}
+
+.article button {
+  border: 0;
+  border-radius: 0.6rem;
+  background: var(--brand);
+  color: #fff;
+  padding: 0.55rem 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.article button:hover {
+  background: var(--brand-strong);
+}
+
+.lunar-feature {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0f4c81 0%, #246bb0 55%, #6fb6ff 100%);
+  color: #f6fbff;
+  border: 0;
+  box-shadow: 0 14px 30px rgba(17, 62, 105, 0.25);
+}
+
+.lunar-feature::before {
+  content: "";
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  right: -70px;
+  top: -80px;
+}
+
+.lunar-feature h2,
+.lunar-feature p {
+  position: relative;
+  z-index: 1;
+}
+
+.lunar-feature p {
+  color: rgba(246, 251, 255, 0.95);
+  max-width: 60ch;
+}
+
+.lunar-feature button {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  color: #0b3b64;
+  font-weight: 700;
+}
+
+.lunar-feature button:hover {
+  background: #ffe5a3;
+  color: #0a3152;
+}
+
+.image-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin-bottom: 0.7rem;
+}
+
+.image-container img,
+.article img,
+video {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.6rem;
+}
+
+video {
+  margin-bottom: 0.7rem;
+}
+
+button,
+input,
+a {
+  font: inherit;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
